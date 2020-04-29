@@ -1,1 +1,1 @@
-# flux-search-movies
+# redux-search-movies
