@@ -2,13 +2,12 @@
 import React, { useState, Fragment } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-    searchMovie, 
-    createMovieList, 
-    createError,
     selectMoviesList,
-    selectErrors,
     selectMovies,
-    selectLoading
+    selectLoading,
+    selectMovieItem,
+    selectMovieDetails,
+    cleanMovieItem
 } from './moviesSlice';
 import style from './Movies.module.css';
 import Details from './Details';
@@ -16,24 +15,34 @@ import Details from './Details';
 function MovieItem(props) {
     
     const [modalShow, setModalShow] = React.useState(false);
-
+    const dispatch = useDispatch();
     let { imdbID, Title, Poster } = props.movie;
-    const divClassHighLight = `${style.highlight} border border-dark bg-white col-2 m-1 rounded`;    
+    const divClassHighLight = `${style.highlight} border border-dark bg-white col-lg-2 col-xs-6 col-md-4 col-8 mx-2 my-1 rounded px-0`;    
+    const movieItem = useSelector(selectMovieItem);
+
+    const openDetails = () => {
+        dispatch(selectMovieDetails(imdbID));
+        setModalShow(true)
+    }
+    const closeDetails = () => {
+        dispatch(cleanMovieItem());
+        setModalShow(false)
+    }
     return(
         <Fragment>
-            <div className={ divClassHighLight }  key={imdbID} onClick={() => setModalShow(true)}>
+            <div className={ divClassHighLight } key={imdbID} onClick={() => openDetails()}>
                 <div className="container">
-                    <div className="row">
-                        <div className="align-items-center d-flex justify-content-center w-100 h-auto" style={{ height: "6rem" }}>
+                        <div className="align-items-center d-flex justify-content-center px-2 py-1 row text-center" style={{ height: "5rem" }}>
                             <span className="w-auto" >{ Title } </span>
                         </div>
                         <div className="row align-items-end" style={{ height: "18rem" }}>
-                            <img className="w-100" alt={ Title } src={Poster} style={{ height: 279, width:188}} ></img>
+                            
+                                <img className="w-100" alt={ Title } src={Poster} style={{ height: 279, width:188}} ></img>
+                            
                         </div>
-                    </div>
                 </div>
             </div>
-            <Details show={modalShow} onHide={() => setModalShow(false)} />         
+            <Details item={movieItem} show={modalShow} onHide={ closeDetails} />         
         </Fragment>
     );
 }
@@ -51,7 +60,7 @@ export function Movies () {
 
     const loadingData = () => {
             if(loading) {
-                return (<span>Loading</span>)
+                return (<div className="fade spinner-border text-primary"></div>)
             } else {
                 return (
                     <div className="row justify-content-center">
@@ -62,16 +71,24 @@ export function Movies () {
     }
 
     return (
-        <div className="container">
-            <div className="row">
-                <div className="col-12 d-inline-flex justify-content-center pb-4">
-                    <input className="form-control mr-3 w-25" type="text" value={ searchMovie } onChange={ e => setSearchMovie(e.target.value)} placeholder="Search a movie..."></input>
-                    <button className="btn btn-primary px-5" onClick={() => dispatch(selectMovies(searchMovie))}>Search</button>
+        <div className="col-12 p-0">
+            <div className="col-12 justify-content-center p-0 pb-4">
+                <div className="col-12 col-lg-6 justify-content-center pb-4 row">
+                    <div className="col-12 col-lg-4 col-md-6 pb-2">
+                        <input className="form-control mr-3 " type="text" value={ searchMovie } onChange={ e => setSearchMovie(e.target.value)} placeholder="Search a movie..."></input>
+                    </div>
+                    <div className="col-12 col-lg-4 col-md-4">
+                        <button className="btn btn-primary px-5 w-100" onClick={() => dispatch(selectMovies(searchMovie))}>Search</button>
+                    </div>
                 </div>
             </div>
-                <div className="row justify-content-center">
+            <div className="col-12 justify-content-center m-0 p-0 row">
+                
+                <div className="col-12 col-lg-10 row">
                     { loadingData() }
                 </div>
+                
+            </div>
                 
         </div>
     )

@@ -9,6 +9,6 @@
 div.highlight:hover {
     cursor: pointer !important;
     background-color: white !important;
-    transform: scale(1.1);
-    transition: width 1s;
+    transform: matrix(1, 0, 0, 1, 0, -21);
+    transition: width 1s, height 1s, transform 1s;
 }
