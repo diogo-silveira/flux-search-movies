@@ -7,7 +7,8 @@ export const moviesSlice = createSlice({
         moviesList: [],
         searchMovie: '',
         errors: [],
-        loading: false
+        loading: false,
+        movieItem:{}
     },
     reducers: {
         searchMovie: (state, action) => {
@@ -16,11 +17,22 @@ export const moviesSlice = createSlice({
         createMovieList: (state, action) => {
             state.moviesList = action.payload;
         },
-        createError: (state, action) => {
-            state.errors.push(action.payload)
+        createMovieItem: (state, action) => {
+            state.movieItem = action.payload;
         },
         cleanMovieSearch: (state) => {
             state.searchMovie = '';
+        },
+        cleanMovieItem: (state) => {
+            state.movieItem = {};
+        },
+        createError: (state, action) => {
+            console.log(`add- ${action.payload}`)
+            state.errors.push(action.payload)
+        },
+        cleanError: (state, action) => {
+            console.log(`remove - ${state.errors}`)
+            state.errors = state.errors.splice(action.payload, 1);
         },
         displayLoading: (state, action) => {
             state.loading = action.payload;
@@ -28,7 +40,13 @@ export const moviesSlice = createSlice({
     }
 });
 
-export const { searchMovie, createMovieList, createError, displayLoading } = moviesSlice.actions;
+export const { searchMovie, 
+               createMovieItem, 
+               createMovieList, 
+               createError, 
+               displayLoading,
+               cleanError, 
+               cleanMovieItem } = moviesSlice.actions;
 
 /* Methods */
 export const selectMovies = movie => dispatch => {
@@ -43,9 +61,16 @@ export const selectMovies = movie => dispatch => {
         .catch((error) => dispatch(createError(error.message)));
 }
 
+export const selectMovieDetails = id => dispatch => {
+    return Api.get(`&i=${id}`)
+    .then(({data}) => dispatch(createMovieItem(data)))
+    .catch((error) => dispatch(createError(error.message)));
+}
+
 
 /* Selectors */
 export const selectMoviesList = state => state.movies.moviesList;
+export const selectMovieItem = state => state.movies.movieItem;
 export const selectErrors = state => state.movies.errors;
 export const selectLoading = state => state.loading;
 
