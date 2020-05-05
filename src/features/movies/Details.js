@@ -11,6 +11,7 @@ export default function Details(props){
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
+        style={{ paddingLeft:0 }}
         >
         <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">
@@ -19,7 +20,7 @@ export default function Details(props){
         </Modal.Header>
         <Modal.Body>
             <div className="row col-12">
-                <div className="col-8"><p>{Plot}</p>
+                <div className="col-12 col-sm-8"><p>{Plot}</p>
                 <p><b>Production</b> - {Production}</p>
                 <p><b>Rating</b> - {imdbRating}</p>
                 <p><b>Duration</b> - {Runtime}</p>
@@ -32,7 +33,7 @@ export default function Details(props){
                 <p><b>Director</b> - {Director}</p>
                 <p><b>Writer</b> - {Writer}</p>
             </div>
-                <div className="col-4"><img className="w-100" src={Poster} alt={Title}/></div>
+                <div className="d-none d-sm-block col-sm-4"><img className="w-100" src={Poster} alt={Title}/></div>
             </div>
         </Modal.Body>
         <Modal.Footer>

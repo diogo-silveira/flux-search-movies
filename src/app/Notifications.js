@@ -19,7 +19,7 @@ export function Notifications(props) {
 
     const notification = (
         <div key={wrapper} style={{position: 'absolute', minHeight: 100, top: props.index ? props.index * 105 : 5, right: 0, zIndex:999999}} ref={wrapper}>
-            <Toast onClose={() => onCloseNotification()} show={show} delay={5000} autohide style={{}} >
+            <Toast key={props.index} onClose={() => onCloseNotification()} show={show} delay={5000} autohide style={{}} >
                     <Toast.Header>
                     <img
                         src="holder.js/20x20?text=%20"
