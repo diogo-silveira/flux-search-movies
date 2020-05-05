@@ -4,23 +4,31 @@ import { useSelector, useDispatch } from 'react-redux';
 import './App.css';
 import { Notifications } from './app/Notifications'
 import { selectErrors } from './features/movies/moviesSlice';
+import { useAxiosLoader } from './utils/Api';
 
 function App() {
   
   const selectError = useSelector(selectErrors);
-  const notifications = selectError.map((error, index) => <Notifications index={ index } message={ error }></Notifications>);
+  const notifications = selectError.map((error, index) => <Notifications key={index} index={ index } message={ error }></Notifications>);
 
   const logo = 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQM_62ZYb6Q812SZfSZscOi9-7HtBYWH2P4YlcQJ3Sob_4QKcQY&usqp=CAU';
+
+  const GlobalLoader = () => {
+    const [loading] = useAxiosLoader();
+    console.log(loading);
+    return (loading ? <div className="cover-spin"><div className="spinner-border spinner text-primary"></div></div> : '');
+}
+
   return (
     <div className="App h-100 position-relative">
        { notifications }
       <div className="col-12 h-100 position-relative px-0">
-        <div className="col-12 h-auto text-center">
+        <div className="col-12 h-auto text-center pt-5 pt-sm-0">
           <img src={logo} className="App-logo" alt="logo" />
         </div>
           <Movies />
       </div>
-     
+      <GlobalLoader></GlobalLoader>
     </div>
   );
 }
