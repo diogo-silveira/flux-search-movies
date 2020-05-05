@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import Api from '../../utils/Api';
+
 /* Actions and Reducers */
 export const moviesSlice = createSlice({
     name: 'movies',
@@ -7,7 +8,6 @@ export const moviesSlice = createSlice({
         moviesList: [],
         searchMovie: '',
         errors: [],
-        loading: false,
         movieItem:{}
     },
     reducers: {
@@ -33,9 +33,6 @@ export const moviesSlice = createSlice({
         cleanError: (state, action) => {
             console.log(`remove - ${state.errors}`)
             state.errors = state.errors.splice(action.payload, 1);
-        },
-        displayLoading: (state, action) => {
-            state.loading = action.payload;
         }
     }
 });
@@ -72,6 +69,5 @@ export const selectMovieDetails = id => dispatch => {
 export const selectMoviesList = state => state.movies.moviesList;
 export const selectMovieItem = state => state.movies.movieItem;
 export const selectErrors = state => state.movies.errors;
-export const selectLoading = state => state.loading;
 
 export default moviesSlice.reducer;
