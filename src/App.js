@@ -2,7 +2,7 @@ import React from 'react';
 import { Movies } from './features/movies/Movies'
 import { useSelector, useDispatch } from 'react-redux';
 import './App.css';
-import { Notifications } from './app/Notifications'
+import { Notifications } from './utils/Notifications'
 import { selectErrors } from './features/movies/moviesSlice';
 import { useAxiosLoader } from './utils/Api';
 
@@ -15,7 +15,6 @@ function App() {
 
   const GlobalLoader = () => {
     const [loading] = useAxiosLoader();
-    console.log(loading);
     return (loading ? <div className="cover-spin"><div className="spinner-border spinner text-primary"></div></div> : '');
 }
 
@@ -24,7 +23,7 @@ function App() {
        { notifications }
       <div className="col-12 h-100 position-relative px-0">
         <div className="col-12 h-auto text-center pt-5 pt-sm-0">
-          <img src={logo} className="App-logo" alt="logo" />
+          <img src={logo} className="App-logo" id="logo" alt="logo" />
         </div>
           <Movies />
       </div>

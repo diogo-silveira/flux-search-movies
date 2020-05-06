@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` 1`] = `ShallowWrapper {}`;
+
+exports[` 2`] = `ShallowWrapper {}`;
+
+exports[`Test App render the app 1`] = `ShallowWrapper {}`;
+
+exports[`render Movies Movies 1`] = `ShallowWrapper {}`;
+
+exports[`render Notifications Notifications 1`] = `ShallowWrapper {}`;
