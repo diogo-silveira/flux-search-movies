@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import store from '../../app/store'
-import { shallow, render, mount   } from 'enzyme';
+import { shallow, mount   } from 'enzyme';
 import { MovieItem, Movies } from './Movies';
 
 describe('should render Movies', () => {
