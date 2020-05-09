@@ -1,9 +1,8 @@
 
 import React, { useState, Fragment } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Toast } from 'react-bootstrap';
 import {
-    selectErrors,
     cleanError
 } from '../features/movies/moviesSlice';
 

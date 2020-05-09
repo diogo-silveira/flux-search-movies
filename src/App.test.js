@@ -3,7 +3,6 @@ import { Provider } from 'react-redux';
 import store from './app/store';
 import App from './App';
 import { shallow, render, mount   } from 'enzyme';
-import 'enzyme';
 import { Movies } from './features/movies/Movies'
 import { Notifications } from './utils/Notifications'
 

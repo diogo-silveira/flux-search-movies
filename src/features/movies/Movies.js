@@ -11,7 +11,7 @@ import {
 import style from './Movies.module.css';
 import Details from './Details';
 
-function MovieItem(props) {
+export function MovieItem(props) {
     
     const [modalShow, setModalShow] = React.useState(false);
     const dispatch = useDispatch();
@@ -77,7 +77,7 @@ export function Movies () {
                             <input className="form-control mr-3" name="searchMovie" type="text" value={ searchMovie } onChange={ e => setSearchMovie(e.target.value)} placeholder="Search a movie..."></input>
                         </div>
                         <div className="col-12 col-lg-2 col-md-4 pr-0">
-                            <button className="btn btn-primary px-5 w-100" onClick={() => search()}>Search</button>
+                            <button name="searchButton" className="btn btn-primary px-5 w-100" onClick={() => search()}>Search</button>
                         </div>
                 </div>
             </div>

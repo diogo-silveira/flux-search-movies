@@ -1,6 +1,6 @@
 import React from 'react';
 import { Movies } from './features/movies/Movies'
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import './App.css';
 import { Notifications } from './utils/Notifications'
 import { selectErrors } from './features/movies/moviesSlice';

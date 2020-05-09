@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
@@ -12,6 +12,7 @@ export default function Details(props){
         aria-labelledby="contained-modal-title-vcenter"
         centered
         style={{ paddingLeft:0 }}
+        name="modalMovie"
         >
         <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">
