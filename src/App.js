@@ -5,6 +5,7 @@ import './App.css';
 import { Notifications } from './utils/Notifications'
 import { selectErrors } from './features/movies/moviesSlice';
 import { useAxiosLoader } from './utils/Api';
+import NetworkDetector from './Hoc/NetworkDetector';
 
 function App() {
   
@@ -32,4 +33,4 @@ function App() {
   );
 }
 
-export default App;
+export default NetworkDetector(App);
