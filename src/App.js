@@ -19,6 +19,17 @@ function App() {
     return (loading ? <div className="cover-spin"><div className="spinner-border spinner text-primary"></div></div> : '');
 }
 
+  let lastKnownState = window.localStorage.getItem(`lastKnown_${window.location.href}`);
+  
+  lastKnownState = lastKnownState && JSON.parse(lastKnownState);
+  console.log(lastKnownState)
+  if (lastKnownState && lastKnownState.conditions.userId === "gooview" && lastKnownState.conditions.buildNo === "v1") {
+    document.getElementById('root').innerHTML = lastKnownState.data;
+    
+    window.hasRestoredState = true;
+    console.log(window.hasRestoredState)
+  }
+
   return (
     <div className="App h-100 position-relative">
        { notifications }
